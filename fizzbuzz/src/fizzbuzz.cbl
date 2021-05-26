@@ -1,0 +1,16 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. fizzbuzz.
+       DATA DIVISION.
+           LINKAGE SECTION.
+           01 LS-NUMBER UNSIGNED-INT.
+           01 LS-RESULT pic AAAAA.
+       PROCEDURE DIVISION USING LS-NUMBER LS-RESULT.
+           IF FUNCTION MOD(LS-NUMBER, 15) = 0
+               MOVE "FIZZBUZZ" TO LS-RESULT
+           ELSE IF FUNCTION MOD(LS-NUMBER, 3) = 0
+               MOVE "FIZZ" TO LS-RESULT
+           ELSE IF FUNCTION MOD(LS-NUMBER, 5) = 0
+               MOVE "BUZZ" TO LS-RESULT
+           ELSE 
+               DISPLAY "THIS ISNT FIZZ or BUZZ"
+           END-IF.
