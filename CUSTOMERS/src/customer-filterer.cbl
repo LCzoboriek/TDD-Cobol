@@ -57,4 +57,3 @@
            END-PERFORM.
            CLOSE F-CUSTOMER-FILE.
            CLOSE F-CARDS-FILE.
-           
