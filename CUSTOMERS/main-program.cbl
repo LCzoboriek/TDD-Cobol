@@ -1,0 +1,5 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. main-program.
+       DATA DIVISION.
+       PROCEDURE DIVISION.
+

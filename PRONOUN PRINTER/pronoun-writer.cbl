@@ -25,4 +25,4 @@
                WRITE RC-PERSON
                END-WRITE.
            CLOSE F-PEOPLE-FILE.
-        
+
