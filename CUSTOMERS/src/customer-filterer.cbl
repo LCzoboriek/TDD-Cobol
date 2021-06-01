@@ -46,21 +46,21 @@
 
        PROCEDURE DIVISION USING LS-TODAY, LS-TODAY-YEAR.
            MOVE 0 TO WS-FILE-IS-END.
-           OPEN INPUT F-CUSTOMER-FILE.
-           OPEN EXTEND F-CARDS-FILE.
-           OPEN EXTEND F-TAXDAY-FILE.
+           
            
 
            IF LS-TODAY = "04-06"
-               OPEN EXTEND F-TAXDAY-FILE
                PERFORM TAX-DAY
            END-IF.
            PERFORM BIRTHDAY.
            
 
            TAX-DAY SECTION.
-          
+           MOVE 0 TO WS-FILE-IS-END.
+           OPEN INPUT F-CUSTOMER-FILE.
+           OPEN EXTEND F-TAXDAY-FILE.
            PERFORM UNTIL WS-FILE-IS-END = 1
+           
            READ F-CUSTOMER-FILE
                NOT AT END
                    IF LS-TODAY-YEAR - DOB-YEAR >= 18 AND
@@ -78,10 +78,16 @@
                    MOVE 1 TO WS-FILE-IS-END
            END-READ
            END-PERFORM.
+           CLOSE F-CUSTOMER-FILE.
+           CLOSE F-TAXDAY-FILE.
                    
                    
 
            BIRTHDAY SECTION.
+           MOVE 0 TO WS-FILE-IS-END.
+           OPEN INPUT F-CUSTOMER-FILE.
+           OPEN EXTEND F-CARDS-FILE.
+
            PERFORM UNTIL WS-FILE-IS-END = 1
              READ F-CUSTOMER-FILE
                  NOT AT END
@@ -100,4 +106,4 @@
            END-PERFORM.
            CLOSE F-CUSTOMER-FILE.
            CLOSE F-CARDS-FILE.
-           CLOSE F-TAXDAY-FILE.
+           
