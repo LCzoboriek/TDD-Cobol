@@ -5,6 +5,7 @@
            01 WS-TODAY PIC X(5).
            01 WS-TODAY-DAY PIC 99.
            01 WS-TODAY-MONTH PIC 99.
+           01 WS-FULLDATE PIC 9(8).
 
        PROCEDURE DIVISION.
            MOVE FUNCTION CURRENT-DATE(5:2) TO WS-TODAY-MONTH.
@@ -12,6 +13,7 @@
            STRING WS-TODAY-MONTH "-" WS-TODAY-DAY
            INTO WS-TODAY
            END-STRING.
+           MOVE FUNCTION CURRENT-DATE(1:8) TO WS-FULLDATE.
 
-           CALL "customer-filterer" USING WS-TODAY.
+           CALL "customer-filterer" USING '04-06', '20010406'.
 

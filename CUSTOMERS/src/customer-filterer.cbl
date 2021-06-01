@@ -36,23 +36,29 @@
        WORKING-STORAGE SECTION.
            01 WS-FILE-IS-END PIC 9.
            01 WS-DATE PIC 9(8).
+           01 WS-YEAR PIC 9(8).
        LINKAGE SECTION.
            01 LS-TODAY.
                05 LS-TODAY-MON PIC 9(2).
                05 LS-MON-DAY-SEPERATOR PIC X.
                05 LS-TODAY-DAY PIC 9(2).
-           01 LS-TODAY-YEAR PIC 9999.
+           01 LS-TODAY-FULLDATE PIC 9(8).
            
 
-       PROCEDURE DIVISION USING LS-TODAY, LS-TODAY-YEAR.
-           MOVE 0 TO WS-FILE-IS-END.
-           
-           
-
+       PROCEDURE DIVISION USING LS-TODAY, LS-TODAY-FULLDATE.
+      *     STRING DOB-YEAR DOB-MON DOB-DAY
+      *     INTO WS-DATE
+           MOVE DOB-YEAR TO WS-DATE.
+           MOVE DOB-MON TO WS-DATE.
+           MOVE DOB-DAY TO WS-DATE.
+           DISPLAY LS-TODAY-FULLDATE.
+           DISPLAY WS-YEAR.
+      *     END-STRING.
            IF LS-TODAY = "04-06"
                PERFORM TAX-DAY
            END-IF.
            PERFORM BIRTHDAY.
+           GOBACK.
            
 
            TAX-DAY SECTION.
@@ -63,9 +69,7 @@
            
            READ F-CUSTOMER-FILE
                NOT AT END
-                   IF LS-TODAY-YEAR - DOB-YEAR >= 18 AND
-                   DOB-MON >= LS-TODAY-MON AND
-                   DOB-DAY >= LS-TODAY-DAY
+                   IF LS-TODAY-FULLDATE - WS-DATE >= 180000           
                        MOVE PERSON-NAME TO TAX-CARDS-PERSON-NAME
                        MOVE PERSON-ADDRESS TO TAX-CARDS-PERSON-ADDRESS
                        STRING "Happy Tax Day, " PERSON-NAME
@@ -106,4 +110,3 @@
            END-PERFORM.
            CLOSE F-CUSTOMER-FILE.
            CLOSE F-CARDS-FILE.
-           
