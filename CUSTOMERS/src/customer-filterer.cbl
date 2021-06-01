@@ -34,7 +34,6 @@
                05 TAX-CARDS-GREETING PIC X(56).
            WORKING-STORAGE SECTION.
            01 WS-FILE-IS-ENDED PIC 9.
-           01 WS-DATE-FORMAT PIC 9(8).
            LINKAGE SECTION.
            01 LS-TODAY.
                05 LS-TODAY-MONTH PIC 99.
@@ -46,6 +45,7 @@
                PERFORM TAX-DAY
            END-IF.
            PERFORM BIRTHDAY. 
+           GOBACK.
            TAX-DAY SECTION.
            MOVE 0 TO WS-FILE-IS-ENDED.
            OPEN INPUT F-CUSTOMERS-FILE.
