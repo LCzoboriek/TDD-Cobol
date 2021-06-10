@@ -17,7 +17,8 @@
                05 PERSON-ADDRESS PIC X(100).
                05 PERSON-BIRTHDAY.
                    10 BIRTHDAY-YEAR PIC 9(4).
-                   10 YEAR-MON-SEPARATOR PIC X.
+                   10 YEAR-MON-SEPARATOR PIC X.               
+      *            05 TAX-CARDS-GREETING PIC X(56).
                    10 BIRTHDAY-MONTH PIC 99.
                    10 MON-DAY-SEPARATOR PIC X.
                    10 BIRTHDAY-DAY PIC 99.
@@ -36,6 +37,7 @@
            01 WS-FILE-IS-ENDED PIC 9.
            LINKAGE SECTION.
            01 LS-TODAY.
+      *     Where is this being called from and used?
                05 LS-TODAY-MONTH PIC 99.
                05 LS-MON-DAY-SEPARATOR PIC X.
                05 LS-TODAY-DAY PIC 99.
@@ -46,6 +48,8 @@
            END-IF.
            PERFORM BIRTHDAY. 
            GOBACK.
+      *    What exactly is the goback function doing
+      *    Why does it create double the entries when not used
            TAX-DAY SECTION.
            MOVE 0 TO WS-FILE-IS-ENDED.
            OPEN INPUT F-CUSTOMERS-FILE.
@@ -57,11 +61,14 @@
                    (LS-TODAY-YEAR - BIRTHDAY-YEAR = 18 AND
                    BIRTHDAY-MONTH >= LS-TODAY-MONTH AND
                    BIRTHDAY-DAY >= LS-TODAY-DAY)
+      *             How is this part below writing to the file???
                        MOVE PERSON-NAME TO TAX-CARDS-PERSON-NAME
+      *                 If its being done below on write tax-cards-person how is the address being written??
                        MOVE PERSON-ADDRESS TO TAX-CARDS-PERSON-ADDRESS
                        STRING "Happy Tax Day, " PERSON-NAME 
                           INTO TAX-CARDS-GREETING
                            END-STRING
+      *                     This is where the tax-cards person variable is being written to a file
                            WRITE TAX-CARDS-PERSON
                            END-WRITE
                        END-IF

@@ -1,17 +1,21 @@
+       >>SOURCE FORMAT FREE
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. 
+       PROGRAM-ID. apple.
        AUTHOR. Luke Czoboriek.
        DATE-WRITTEN. 1 June 2021.
        ENVIRONMENT DIVISION.
 
        DATA DIVISION.
+           
        FILE SECTION.
        WORKING-STORAGE SECTION.
-       
+           01 WS-WORD VALUE 'Apple'.
+           01 WS-PROGRESS PIC X(20).
 
 
        PROCEDURE DIVISION.
-       
+           MOVE FUNCTION LENGTH(WS-WORD) TO WS-PROGRESS.
+           DISPLAY WS-PROGRESS.
 
        
 

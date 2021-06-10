@@ -14,5 +14,5 @@
            STRING WS-TODAY-MONTH "-" WS-TODAY-DAY 
            INTO WS-TODAY
            END-STRING.
-   
+      *    Is it being called from here? 
            CALL "customer-filterer" USING "04-06", "2021".
