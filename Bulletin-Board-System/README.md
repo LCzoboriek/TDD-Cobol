@@ -12,6 +12,10 @@ https://github.com/adamroy12/makersbbs--TeenageMutantNinjaCobolTurtles-
 
 # Makers BBS
 This program should be run in a terminal that is 132 x 43
+
+The way to run the program remotely is to install Gnu cobol and any other dependencies, then navigate to project folder and use the following command in terminal
+
+'./cbl run'
 This week the goal is:
 
 * Learn to build software in a team.
