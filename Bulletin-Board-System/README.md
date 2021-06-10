@@ -10,11 +10,6 @@ https://github.com/adamroy12/makersbbs--TeenageMutantNinjaCobolTurtles-
 
 
 
-# Trello
-https://trello.com/b/qs9mv75Y/bulletin-board-system
-
-
-
 # Makers BBS
 This program should be run in a terminal that is 132 x 43
 This week the goal is:
